@@ -1,4 +1,4 @@
-package com.hph.servlet;
+package com.hph.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

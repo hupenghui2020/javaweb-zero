@@ -1,11 +1,12 @@
-package com.hph.test;
+package com.hph;
 
+import com.hph.helper.DatabaseHelper;
 import com.hph.model.Customer;
 import com.hph.service.CustomerService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,13 +20,13 @@ public class CustomerServletTest {
     }
 
     @Before
-    public void init() {
-        // TODO 初始化数据库
+    public void init() throws IOException {
+        DatabaseHelper.executeSqlFile("sql/customer_init.sql");
     }
 
     @Test
     public void getCustomerListTest() {
-        List<Customer> customerList = customerService.getCustomerList("");
+        List<Customer> customerList = customerService.getCustomerList();
         Assert.assertEquals(2, customerList.size());
     }
 

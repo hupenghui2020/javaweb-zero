@@ -60,7 +60,7 @@ public final class CastUtil {
      * @param obj
      * @return
      */
-    public static double castLong(Object obj) {
+    public static long castLong(Object obj) {
         return CastUtil.castLong(obj, 0);
     }
 

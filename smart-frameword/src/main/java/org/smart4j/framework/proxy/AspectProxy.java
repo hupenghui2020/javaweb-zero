@@ -7,6 +7,7 @@ import org.smart4j.framework.annotation.Aspect;
 import java.lang.reflect.Method;
 
 /**
+ * 切面代理（用在类上）
  * @author 10499
  */
 public abstract class AspectProxy implements Proxy{
@@ -16,7 +17,7 @@ public abstract class AspectProxy implements Proxy{
     @Override
     public Object doProxy(ProxyChain proxyChain) throws Throwable {
 
-        Object result = null;
+        Object result;
         Class<?> cls = proxyChain.getTargetClass();
         Method method = proxyChain.getTargetMethod();
         Object[] params = proxyChain.getMethodParams();

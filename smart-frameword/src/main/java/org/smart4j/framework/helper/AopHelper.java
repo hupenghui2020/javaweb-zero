@@ -3,15 +3,19 @@ package org.smart4j.framework.helper;
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
 import org.smart4j.framework.annotation.Aspect;
+import org.smart4j.framework.annotation.Service;
 import org.smart4j.framework.proxy.AspectProxy;
 import org.smart4j.framework.proxy.Proxy;
 import org.smart4j.framework.proxy.ProxyManager;
+import org.smart4j.framework.proxy.TransactionProxy;
 import java.lang.annotation.Annotation;
 import java.util.*;
 
 /**
+ * AOP 框架
  * @author 10499
  */
+
 public final class AopHelper {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AopHelper.class);
@@ -26,6 +30,7 @@ public final class AopHelper {
                 List<Proxy> aspectList = targetEntry.getValue();
                 // 使用 CGLIB 创建代理类
                 Object proxy = ProxyManager.createProxy(targetClass, aspectList);
+                // 将之前的 bean 替换成代理实例
                 BeanHelper.setBean(targetClass, proxy);
             }
         } catch (Exception e) {
@@ -37,9 +42,9 @@ public final class AopHelper {
      * 获取所有带 Aspect 注解的 bean
      * @param aspect
      * @return
-     * @throws Exception
      */
-    private static Set<Class<?>> createTargetClassSet(Aspect aspect) throws Exception {
+    private static Set<Class<?>> createTargetClassSet(Aspect aspect) {
+
         Set<Class<?>> targetClassSet = new HashSet<>();
         Class<? extends Annotation> annotation = aspect.value();
         if(!annotation.equals(Aspect.class)) {
@@ -51,10 +56,23 @@ public final class AopHelper {
     /**
      * 获取（切面类 - 所有带有 Aspect注解 value 中的值类型注解的类  的映射）
      * @return
-     * @throws Exception
      */
-    public static Map<Class<?>, Set<Class<?>>> createProxyMap() throws Exception {
+    public static Map<Class<?>, Set<Class<?>>> createProxyMap() {
+
         Map<Class<?>, Set<Class<?>>> proxyMap = new HashMap<>();
+        addAspectProxy(proxyMap);
+        addTransactionProxy(proxyMap);
+        return proxyMap;
+    }
+
+    private static void addTransactionProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
+
+        Set<Class<?>> serviceClassSet = ClassHelper.getClassSetBySuper(Service.class);
+        proxyMap.put(TransactionProxy.class, serviceClassSet);
+    }
+
+    private static void addAspectProxy(Map<Class<?>, Set<Class<?>>> proxyMap) {
+
         Set<Class<?>> proxyClassSet = ClassHelper.getClassSetBySuper(AspectProxy.class);
         // proxyClass：切面类
         for(Class<?> proxyClass : proxyClassSet) {
@@ -66,7 +84,6 @@ public final class AopHelper {
                 proxyMap.put(proxyClass, targetClassSet);
             }
         }
-        return proxyMap;
     }
 
     /**

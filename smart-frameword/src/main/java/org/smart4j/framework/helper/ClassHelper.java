@@ -1,6 +1,5 @@
 package org.smart4j.framework.helper;
 
-import com.fasterxml.jackson.databind.introspect.AnnotationCollector;
 import org.smart4j.framework.annotation.Controller;
 import org.smart4j.framework.annotation.Service;
 import org.smart4j.framework.util.ClassUtil;

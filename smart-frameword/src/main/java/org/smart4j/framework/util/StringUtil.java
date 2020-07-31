@@ -8,6 +8,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class StringUtil {
 
+    public static final String SEPARATOR = ";";
+
     /**
      * 判断字符串是否为空
      * @param str

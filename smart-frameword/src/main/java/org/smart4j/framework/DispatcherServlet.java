@@ -113,7 +113,7 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) {
 
         // 初始化相关 Helper 类
         HelperLoader.init();

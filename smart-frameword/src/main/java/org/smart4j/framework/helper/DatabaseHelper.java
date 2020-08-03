@@ -11,17 +11,24 @@ import java.sql.SQLException;
  */
 public final class DatabaseHelper {
 
-    private static final String DRIVER = "";
+    private static final String DRIVER;
 
-    private static final String URL = "";
+    private static final String URL;
 
-    private static final String USERNAME = "";
+    private static final String USERNAME;
 
-    private static final String PASSWORD = "";
+    private static final String PASSWORD;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseHelper.class);
 
     private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<>();
+
+    static {
+        DRIVER = ConfigHelper.getJdbcDriver();
+        URL = ConfigHelper.getJdbcUrl();
+        USERNAME = ConfigHelper.getJdbcUsername();
+        PASSWORD = ConfigHelper.getJdbcPassword();
+    }
 
     public static void beginTransaction(){
         Connection conn = getConnection();

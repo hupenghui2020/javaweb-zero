@@ -36,7 +36,7 @@ public final class ClassUtil {
      */
     public static void loadClass(String className) {
 
-        loadClass(className, false);
+        loadClass(className, true);
     }
 
     /**
@@ -117,7 +117,7 @@ public final class ClassUtil {
                 }
                 String subPackageName = fileName;
                 if(StringUtil.isNotEmpty(packageName)) {
-                    subPackageName = subPackageName + "." + subPackageName;
+                    subPackageName = packageName + "." + subPackageName;
                 }
                 addClass(classSet, subPackagePath, subPackageName);
             }

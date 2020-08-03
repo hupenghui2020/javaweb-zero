@@ -5,7 +5,6 @@ import com.hph.smart.service.SmartDemoService;
 import org.smart4j.framework.annotation.Action;
 import org.smart4j.framework.annotation.Controller;
 import org.smart4j.framework.annotation.Inject;
-import org.smart4j.framework.bean.Param;
 import org.smart4j.framework.bean.View;
 
 import java.sql.SQLException;
@@ -21,7 +20,7 @@ public class SmartDemoController {
     private SmartDemoService smartDemoService;
 
     @Action("get:/test")
-    public View test(Param param) throws SQLException {
+    public View test() throws SQLException {
 
         smartDemoService.getUserList();
         List<User> userList = smartDemoService.getUserList();

@@ -18,12 +18,12 @@ public class SmartDemoService {
 
     public List<User> getUserList() throws SQLException {
         Connection conn = DatabaseHelper.getConnection();
-        ResultSet resultSet = conn.createStatement().executeQuery("select * from user");
+        ResultSet resultSet = conn.createStatement().executeQuery("select * from sys_user");
         List<User> userList = new ArrayList<User>();
         while (resultSet.next()) {
-            long id = resultSet.getLong(0);
-            String name = resultSet.getString(1);
-            long age = resultSet.getLong(2);
+            int id = resultSet.getInt(1);
+            String name = resultSet.getString(3);
+            int age = resultSet.getInt(2);
             User user = new User(id, name, age);
             userList.add(user);
         }

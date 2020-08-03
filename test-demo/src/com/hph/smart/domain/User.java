@@ -1,30 +1,28 @@
 package com.hph.smart.domain;
 
-import java.util.UUID;
-
 /**
  * 用户数据
  * @author hph
  */
 public class User {
 
-    private Long id;
+    private int id;
 
     private String name;
 
-    private Long age;
+    private int age;
 
-    public User(Long id, String name, Long age) {
+    public User(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,11 +34,11 @@ public class User {
         this.name = name;
     }
 
-    public Long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 }

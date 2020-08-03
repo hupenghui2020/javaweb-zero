@@ -129,11 +129,12 @@ public class Param {
     }
 
     /**
-     * 获取所有字段信息
+     * 根据参数名获取 boolean 型参数值
+     * @param name
      * @return
      */
-    public Map<String, Object> getMap() {
-        return paramMap;
+    public boolean getBoolean(String name) {
+        return CastUtil.castBoolean(getFieldMap().get(name));
     }
 
     /**

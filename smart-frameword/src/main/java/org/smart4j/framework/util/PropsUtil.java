@@ -83,7 +83,7 @@ public final class PropsUtil {
      * @param defaultValue
      * @return
      */
-    private static int getInt(Properties props, String key, int defaultValue) {
+    public static int getInt(Properties props, String key, int defaultValue) {
         int value = defaultValue;
         if(props.containsKey(key)) {
             value =  CastUtil.castInt(props.getProperty(key));

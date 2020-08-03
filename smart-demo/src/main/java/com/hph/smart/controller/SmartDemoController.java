@@ -24,7 +24,6 @@ public class SmartDemoController {
     public View test(Param param) throws SQLException {
 
         smartDemoService.getUserList();
-        System.out.println(param.getMap().toString());
         List<User> userList = smartDemoService.getUserList();
         return new View("index.jsp").addModel("userList", userList);
     }

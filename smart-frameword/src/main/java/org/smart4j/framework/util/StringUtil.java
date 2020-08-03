@@ -8,7 +8,10 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class StringUtil {
 
-    public static final String SEPARATOR = ";";
+    /**
+     * 字符串分隔符
+     */
+    public static final String SEPARATOR = String.valueOf((char) 29);
 
     /**
      * 判断字符串是否为空
@@ -29,5 +32,19 @@ public final class StringUtil {
      */
     public static boolean isNotEmpty(String str) {
         return !isEmpty(str);
+    }
+
+    /**
+     * 字符串指定字符切割
+     * @param str
+     * @param splitStr
+     * @return
+     */
+    public static String[] splitString(String str, String splitStr) {
+
+        if(StringUtil.isNotEmpty(str)) {
+            return str.split(splitStr);
+        }
+        return null;
     }
 }

@@ -16,13 +16,31 @@ public final class ReflectionUtil {
 
     /**
      * 创建实例
-     * @param cls
+     * @param cls 类
      * @return
      */
     public static Object newInstance(Class<?> cls) {
 
         Object instance;
         try {
+            instance = cls.newInstance();
+        }catch (Exception e) {
+            LOGGER.error("new instance failure", e);
+            throw new RuntimeException(e);
+        }
+        return instance;
+    }
+
+    /**
+     * 创建实例
+     * @param className 类名称
+     * @return
+     */
+    public static Object newInstance(String className) {
+
+        Object instance;
+        try {
+            Class<?> cls = Class.forName(className);
             instance = cls.newInstance();
         }catch (Exception e) {
             LOGGER.error("new instance failure", e);

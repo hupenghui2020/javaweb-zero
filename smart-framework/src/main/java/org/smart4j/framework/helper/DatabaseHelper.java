@@ -2,6 +2,8 @@ package org.smart4j.framework.helper;
 
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -101,5 +103,9 @@ public final class DatabaseHelper {
             CONNECTION_HOLDER.set(conn);
         }
         return conn;
+    }
+
+    public static DataSource getDataSource() {
+        return null;
     }
 }

@@ -30,9 +30,9 @@ public interface SecurityConstant {
     String JDBC_PERMISSIONS_QUERY = "smart.plugin.security.jdbc.permissions_query";
 
     /**
-     * 是否激活缓存
+     * 是否使用缓存
      */
-    String CACHEABLE = "";
+    String CACHEABLE = "smart.plugin.security.cache";
 
     String JDBC_AUTHC_QUERY = "smart.plugin.security.jdbc.authc_query";
 }
